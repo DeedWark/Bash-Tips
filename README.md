@@ -1,4 +1,4 @@
-# Bash-Learn
+# Tips in Shell/Bash/Linux
 
 **TIPS:**
 
