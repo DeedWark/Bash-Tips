@@ -1,0 +1,2 @@
+#To avoid carriage return in bash
+tr -d '\r' < script.sh
