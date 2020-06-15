@@ -4,5 +4,5 @@
 
 - Avoid carriage return in bash
 ``` 
-tr -d '\r' < script.sh 
+tr -d '\r' < script.sh > script1.sh
 ```
