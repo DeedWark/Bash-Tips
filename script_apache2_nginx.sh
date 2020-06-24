@@ -31,7 +31,7 @@ case $choice in
 esac
 echo -e ""
 
-mv /etc/apache2/ports.conf{,.old} && sed 's/Listen 80/Listen 8080/g' ports.conf.old > /etc/apache2/ports.conf
+mv /etc/apache2/ports.conf{,.old} && sed 's/Listen 80/Listen 8080/g' /etc/apache2/ports.conf.old > /etc/apache2/ports.conf 2>/dev/null
 
 #Create VHost
 echo -ne "<VirtualHost *:8080>
