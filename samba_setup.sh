@@ -45,7 +45,7 @@ echo -ne "[${only}]
 
 /etc/init.d/smbd start
 echo "$user password for SMB: "
-smbpasswd -a "$user"
+/usr/bin/smbpasswd -a "$user"
 
 chown "$user": "$share"
 /etc/init.d/smbd restart
