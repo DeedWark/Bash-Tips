@@ -60,7 +60,7 @@ mkdir -p /var/www/"$site$dom"
 #Add local dns
 echo -ne "\n127.0.0.1    $site$dom www.$site$dom" >> /etc/hosts
 
-echo -e "\nYour site is now available! ($site$dom or www.$site$dom)\nDon't forget to put your web files in this dir: /var/www/$site$dom/"
+echo -e "\nYour site is now available! ($site$dom or www.$site$dom)\nDon't forget to put your web files in this dir: /var/www/$site$dom/\n"
 
 ####################### NGINX ########################
 read -r -p "Do you want to set a Reverse Proxy with NGINX? [Y/N]: " rp
