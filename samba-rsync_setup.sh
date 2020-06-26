@@ -10,6 +10,8 @@ fi
 #check if samba
 checksamba=$(dpkg -s |grep -ie "Package: samba$")
 
+echo -e "\nSamba + Rsync configurator\n"
+
 #install it or not?
 if [[ -z $checksamba ]] ; then
 	read -r -p "Do you want to install Samba? [Y/N]: " sambainst
@@ -20,8 +22,8 @@ if [[ -z $checksamba ]] ; then
 fi
 
 #user for samba
-echo -e "Select a user dedicated to Samba"
-read -r -p "Do you want to create a new one [Y/N] " new
+echo -e "\nSelect a user dedicated to Samba"
+read -r -p "Do you want to create a new one [Y/N]: " new
 case $new in
 	[YyOo]* ) read -r -p "Name: " name
 		useradd -m "$name" && user=$name;;
@@ -44,12 +46,12 @@ echo -ne "[${only}]
 	   browsable = yes\n" >> /etc/samba/smb.conf
 
 /etc/init.d/smbd start
-echo "$user password for SMB: "
+echo "\n$user password for SMB "
 /usr/bin/smbpasswd -a "$user"
 
 chown "$user": "$share"
 /etc/init.d/smbd restart
-
+echo -e ""
 ############ RSYNC #############
 read -r -p "Do you want to set rsync backup for your samba share? [Y/N]: " wantrs
 
@@ -67,10 +69,10 @@ case $wantrs in
 		read -r -p "Enter a path (backup place): " bkppath
 		mkdir -p "$bkppath"
 
-		read -r -p "\nEnter your share IP/DNS: " ip
-		/usr/bin/mount -t cifs -o username="$user" //"$ip"/"$only" "$bkppath"
+		read -r -p "Enter your share IP/DNS: " ip
+		mount -t cifs -o username="$user" //"$ip"/"$only" "$bkppath"
 
-		checkmount=$(/usr/bin/mount |grep -i samba)
+		checkmount=$(mount |grep -i samba)
 		if [[ -z $checkmount ]] ; then
 			echo -e "Mount FAILED! - Please do this command after this script :\nmount -t cifs -o username=${user} //${ip}/${only} ${bkppath}\nOR\nmount.cifs //${ip}/${only} ${bkppath}\n"
 		fi
@@ -79,10 +81,11 @@ case $wantrs in
 		echo -e "\nPLEASE CHANGE PASSWORD IN THIS FILE '/etc/fstab' TO MOUNT YOUR BACKUP FOLDER AT LINUX STARTING"
 		
 		echo -e "#!/bin/bash\n\nrsync -r ${share} ${bkppath}" > /usr/bin/backup_samba && chmod +x /usr/bin/backup_samba
+		echo -e ""
 
 		read -r -p "Do you want to set an auto backup? (w/CRON) [Y/N]: " auto
 		case $auto in
-			[YyOo]* ) echo -e "  [1] Monthly\n  [2] Weekly\n  [3] Daily\n  [4]  Hourly"
+			[YyOo]* ) echo -e "  [1] Monthly\n  [2] Weekly\n  [3] Daily\n  [4] Hourly"
 				read -r -p "Select a time period: " period
 				case $period in
 					1 ) cp /usr/bin/backup_samba /etc/cron.monthly/backup_samba;;
@@ -95,3 +98,4 @@ case $wantrs in
 
 	[Nn]* ) exit 0;;
 esac
+echo -e ""
