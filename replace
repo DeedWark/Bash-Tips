@@ -7,7 +7,7 @@ help() {
                   replace\n"
 }
 
-[[ $1 = "-h" ]] || [[ $1 = "--help" ]] && help
+[[ $1 = "-h" ]] || [[ $1 = "--help" ]] && help && exit 0
 
 #cmmd=$(which sed)
 
