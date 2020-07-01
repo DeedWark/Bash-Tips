@@ -19,5 +19,5 @@ if [[ -z $1 ]] ; then
 	read -r -p "Replace by : " word2
 	sed -i "s/${word1}/${word2}/g" "$file"
 else
-	sed -i "s/${1}/${2}/g" $3
+	sed -i "s/${1}/${2}/g" "$3"
 fi
