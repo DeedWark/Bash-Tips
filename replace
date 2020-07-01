@@ -2,9 +2,9 @@
 
 help() {
 	echo -ne "To use this script
-		  replace word1 word2 file
-                  or
-                  replace\n"
+	replace word1 word2 file
+        or
+        replace\n"
 }
 
 [[ $1 = "-h" ]] || [[ $1 = "--help" ]] && help && exit 0
