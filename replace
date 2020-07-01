@@ -2,7 +2,7 @@
 
 help() {
 	echo -e "Usage:  replace word1 word2 file
-replace\n"
+        replace\n"
 }
 
 [[ $1 = "-h" ]] || [[ $1 = "--help" ]] && help && exit 0
