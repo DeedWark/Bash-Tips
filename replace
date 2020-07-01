@@ -1,0 +1,23 @@
+#!/bin/bash
+
+help() {
+	echo -ne "To use this script
+		  replace word1 word2 file
+                  or
+                  replace\n"
+}
+
+[[ $1 = "-h" ]] || [[ $1 = "--help" ]] && help
+
+#cmmd=$(which sed)
+
+if [[ -z $1 ]] ; then
+	echo ""
+	read -r -p "File: " file
+	echo -e "\nRespect Upper/Lowercase"
+	read -r -p "Word to replace: " word1
+	read -r -p "Replace by : " word2
+	sed -i "s/${word1}/${word2}/g" "$file"
+else
+	sed -i "s/${1}/${2}/g" $3
+fi
