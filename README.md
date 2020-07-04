@@ -55,6 +55,7 @@ apk add <package>
 # eopkg
 eopkg update-repo / eopkg upgrade
 eopkg install <package>
+# no confirmation =>  -y
 ```
 
 ## OpenSUSE
