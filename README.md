@@ -70,7 +70,6 @@ zypper install <package>
 # emerge
 emerge --sync / emerge 
 emerge <package>
-
 ```
 
 ## MacOS
