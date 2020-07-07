@@ -6,6 +6,12 @@
 ``` 
 tr -d '\r' < script.sh > script1.sh
 ```
+- Find something in a list of directory
+```
+find * -iname "string" -type f -exec <command> {} \;
+#find * -iname "*.log" -type f -exec grep -i "python" {] \;
+```
+
 # Package Manager
 
 ## Debian/Ubuntu based
