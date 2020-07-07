@@ -3,7 +3,7 @@
 **TIPS:**
 
 - Avoid carriage return in bash
-``` 
+``` bash
 tr -d '\r' < script.sh > script1.sh
 ```
 - Find something in a list of directory
@@ -16,7 +16,7 @@ find * -iname "string" -type f -exec <command> {} \;
 
 ## Debian/Ubuntu based
 
-```
+```bash
 # APT
 apt update / apt upgrade
 apt install <package>
@@ -25,7 +25,7 @@ apt-get install <package>
 ```
 
 ## CentOS / Red Hat
-```
+```bash
 # YUM
 yum update / yum upgrade
 yum install <package>
@@ -34,7 +34,7 @@ yum install <package>
 
 ## Arch based
 
-```
+```bash
 # pacman / yaourt
 pacman -Syy / pacman -Syu
 pacman -S <package>
@@ -42,7 +42,7 @@ pacman -S <package>
 ```
 
 ## Fedora
-```
+```bash
 # DNF
 dnf update / dnf upgrade
 dnf install <package>
@@ -50,14 +50,14 @@ dnf install <package>
 ```
 
 ## Alpine
-```
+```bash
 # APK
 apk update / apk upgrade
 apk add <package>
 ```
 
 ## Solus
-```
+```bash
 # eopkg
 eopkg update-repo / eopkg upgrade
 eopkg install <package>
@@ -65,7 +65,7 @@ eopkg install <package>
 ```
 
 ## OpenSUSE
-```
+```bash
 # ZYpp
 zypper update
 zypper install <package>
@@ -73,14 +73,14 @@ zypper install <package>
 ```
 
 ## Gentoo
-```
+```bash
 # emerge
 emerge --sync / emerge 
 emerge <package>
 ```
 
 ## MacOS
-```
+```bash
 # brew
 brew update / brew upgrade
 brew install <package>
