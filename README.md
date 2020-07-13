@@ -15,7 +15,6 @@ find * -iname "string" -type f -exec <command> {} \;
 # Package Manager
 
 ## Debian/Ubuntu based
-
 ```bash
 # APT
 apt update / apt upgrade
@@ -30,10 +29,10 @@ apt-get install <package>
 yum update / yum upgrade
 yum install <package>
 # no confirm =>  -y
+# RPM => rpm -ivh <package>.rpm
 ```
 
 ## Arch based
-
 ```bash
 # pacman / yaourt
 pacman -Syy / pacman -Syu
@@ -47,6 +46,7 @@ pacman -S <package>
 dnf update / dnf upgrade
 dnf install <package>
 # no confirm =>  -y
+# RPM => rpm -ivh <package>.rpm
 ```
 
 ## Alpine
