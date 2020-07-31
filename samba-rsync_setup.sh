@@ -100,4 +100,4 @@ case $wantrs in
 
 	[Nn]* ) exit 0;;
 esac
-echo -e ""
+echo -e "\nDone !\n"
