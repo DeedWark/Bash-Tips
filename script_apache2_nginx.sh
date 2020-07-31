@@ -11,6 +11,7 @@ fi
 check=$(dpkg -s |grep -ie "Package: apache2$")
 
 if [[ -z $check ]] ; then
+	echo -e "Apache2 is not installed!"
 	read -r -p "Do you want to install Apache2? [Y/N]: " inst
 	case $inst in
 		[yYoO]* ) apt-get -y install apache2 1>/dev/null;;
@@ -58,7 +59,7 @@ mkdir -p /var/www/"$site$dom"
 /etc/init.d/apache2 start 2>/dev/null && /etc/init.d/apache2 reload 2>/dev/null
 
 #Add local dns
-echo -ne "\n127.0.0.1    $site$dom www.$site$dom" >> /etc/hosts
+echo -ne "\n127.0.0.1    $site$dom www.$site$dom\n" >> /etc/hosts
 
 echo -e "\nYour site is now available! ($site$dom or www.$site$dom)\nDon't forget to put your web files in this dir: /var/www/$site$dom/\n"
 
@@ -70,6 +71,7 @@ case $rp in
 		checknginx=$(dpkg -s |grep -ie "Package: nginx$")
 
 		if [[ -z $checknginx ]] ; then
+			echo -e "NGINX is not installed!"
 			read -r -p "Do you want to install NGINX? [Y/N]: " nginxinst
 			case $nginxinst in
 				[YyOo]* ) apt-get -y install nginx 1>/dev/null;;
