@@ -14,6 +14,7 @@ echo -e "\nSamba + Rsync configurator\n"
 
 #install it or not?
 if [[ -z $checksamba ]] ; then
+	echo -e "Samba/SMB is not installed"
 	read -r -p "Do you want to install Samba? [Y/N]: " sambainst
 	case $sambainst in
 		[YyOo]* ) apt-get -y install samba smbclient 1>/dev/null;;
@@ -46,7 +47,7 @@ echo -ne "[${only}]
 	   browsable = yes\n" >> /etc/samba/smb.conf
 
 /etc/init.d/smbd start
-echo "\n$user password for SMB "
+echo -e "\n$user password for SMB "
 /usr/bin/smbpasswd -a "$user"
 
 chown "$user": "$share"
@@ -59,6 +60,7 @@ case $wantrs in
 	[YyOo]* ) checkrsync=$(dpkg -s |grep -ie "Package: rsync$")
 
 		if [[ -z $checkrsync ]] ; then
+			echo -e "\nrsync is not installed"
 			read -r -p "Do you want to install rsync & cifs-utils? [Y/N] " rsyncinst
 			case $rsyncinst in
 				[YyOo]* ) apt-get -y install rsync cifs-utils 1>/dev/null;;
