@@ -24,24 +24,28 @@ fi
 read -r -p "From: " from
 read -r -p "To: " to
 read -r -p "Date: " date
-read -r -p "Subject: " subject
-read -r -p "Message-ID: (leave empty for random or type 0 for none): " mid
-read -r -p "Mailer: (leave empty for put this one or type 0 for none): " xm
+read -r -p "Subject (leave empty for current date): " subject
+read -r -p "Message-ID (leave empty for random or type 0 for none): " mid
+read -r -p "Mailer (leave empty for put this one or type 0 for none): " xm
 
 if [ -z "$from" ]; then
-	from = $mfrom
+	from="$mfrom"
 fi
 
 if [ -z "$to" ]; then
-	to = "$rto"
+	to="$rto"
 fi
 
 if [ -z "$date" ]; then
-	date = ""
+	curdate="$(date)"
 fi
 
 if [ -z "$subject" ]; then
-	subject = ""
+	subject=""
+fi
+
+if [ -z "$mid" ]; then
+	mid="<$(date|tr -d ' :')@$(hostname).localdomain>"
 fi
 
 { 
@@ -50,7 +54,7 @@ fi
 	echo "MAIL FROM:<${mfrom}>"; 
 	echo "RCPT TO:<${rto}>"; 
 	echo "DATA"; 
-	echo "Date: ${date}"; 
+	echo "Date: ${curdate}"; 
 	echo "To: ${to}"; 
 	echo "From: ${from}"; 
 	echo "Subject: ${subject}"; 
