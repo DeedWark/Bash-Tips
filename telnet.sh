@@ -44,4 +44,17 @@ if [ -z "$subject" ]; then
 	subject = ""
 fi
 
-{ echo "EHLO ${helo}"; echo "EHLO ${helo}"; echo "MAIL FROM:<${mfrom}>"; echo "RCPT TO:<${rto}>"; echo "DATA"; echo "Date: ${date}"; echo "To: ${to}"; echo "From: ${from}"; echo "Subject: ${subject}"; echo "."; echo ""; sleep 1; } | telnet ${smtp} 25
+{ 
+	echo "EHLO ${helo}";
+	echo "EHLO ${helo}"; 
+	echo "MAIL FROM:<${mfrom}>"; 
+	echo "RCPT TO:<${rto}>"; 
+	echo "DATA"; 
+	echo "Date: ${date}"; 
+	echo "To: ${to}"; 
+	echo "From: ${from}"; 
+	echo "Subject: ${subject}"; 
+	echo "."; 
+	echo ""; 
+	sleep 1;
+} | telnet ${smtp} 25
