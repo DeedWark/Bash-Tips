@@ -54,7 +54,6 @@ fi
 	echo "To: ${to}"; 
 	echo "From: ${from}"; 
 	echo "Subject: ${subject}"; 
-	echo "."; 
-	echo ""; 
+	echo ".";  
 	sleep 1;
 } | telnet ${smtp} 25
