@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Kenji DURIEZ - 2020
 #This script will perform TELNET in a sec
 
@@ -57,12 +57,12 @@ fi
 	if [ -z "$mid" ]; then
 		echo "Message-Id: <$(date|tr -d ' :[a-z][A-Z]').$(shuf -i 1000-9999 -n 1)@$(hostname).thisdomain>" 
 	elif [ "$mid" == "0" ]; then
-		continue 
+		: 
 	fi;
 	if [ -z "$xm" ]; then 
 		echo "X-Mailer: $(uname)"
 	elif [ "$xm" == "0" ]; then
-		continue 
+		: 
 	fi;
 	echo ".";
 	sleep 1;
