@@ -46,7 +46,6 @@ fi
 
 { 
 	echo "EHLO ${helo}";
-	echo "EHLO ${helo}";
 	echo "MAIL FROM:<${mfrom}>";
 	echo "RCPT TO:<${rto}>";
 	echo "DATA";
