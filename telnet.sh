@@ -23,8 +23,8 @@ fi
 
 read -r -p "From: " from
 read -r -p "To: " to
-read -r -p "Date: " date
-read -r -p "Subject (leave empty for current date): " subject
+read -r -p "Date (leave empty for current date): " date
+read -r -p "Subject: " subject
 read -r -p "Message-ID (leave empty for random or type 0 for none): " mid
 read -r -p "Mailer (leave empty for put this one or type 0 for none): " xm
 
@@ -44,20 +44,26 @@ if [ -z "$subject" ]; then
 	subject=""
 fi
 
-if [ -z "$mid" ]; then
-	mid="<$(date|tr -d ' :')@$(hostname).localdomain>"
-fi
-
 { 
 	echo "EHLO ${helo}";
-	echo "EHLO ${helo}"; 
-	echo "MAIL FROM:<${mfrom}>"; 
-	echo "RCPT TO:<${rto}>"; 
-	echo "DATA"; 
-	echo "Date: ${curdate}"; 
-	echo "To: ${to}"; 
-	echo "From: ${from}"; 
-	echo "Subject: ${subject}"; 
-	echo ".";  
+	echo "EHLO ${helo}";
+	echo "MAIL FROM:<${mfrom}>";
+	echo "RCPT TO:<${rto}>";
+	echo "DATA";
+	echo "Date: ${curdate}";
+	echo "To: ${to}";
+	echo "From: ${from}";
+	echo "Subject: ${subject}";
+	if [ -z "$mid" ]; then
+		echo "Message-Id: <$(date|tr -d ' :[a-z][A-Z]').$(shuf -i 1000-9999 -n 1)@$(hostname).thisdomain>" 
+	elif [ "$mid" == "0" ]; then
+		continue 
+	fi;
+	if [ -z "$xm" ]; then 
+		echo "X-Mailer: $(uname)"
+	elif [ "$xm" == "0" ]; then
+		continue 
+	fi;
+	echo ".";
 	sleep 1;
 } | telnet ${smtp} 25
