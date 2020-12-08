@@ -7,14 +7,23 @@ fi
 
 apt-get install -y ruby-full build-essential zlib1g-dev
 
-echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
+#Detec shell
+sh=${SHELL}
+case ${sh} in
+	*bash* ) rc="~/.bashrc";;
+	*zsh* ) rc="~/.zshrc";;
+	* ) rc="~/.bashrc";;
+esac
+
+echo "Add commands in ${rc} ..."
+echo '# Install Ruby Gems to ~/gems' >> ${rc}
+echo 'export GEM_HOME="$HOME/gems"' >> ${rc}
+echo 'export PATH="$HOME/gems/bin:$PATH"' >> ${rc}
+source ${rc}
 
 gem install jekyll bundler
 
-echo -e "Create a new project:
+echo -e "\nCreate a new project:
 -> jekyll new myproject
 -> cd myproject
 -> bundle exec jekyll serve
