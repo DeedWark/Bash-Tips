@@ -79,6 +79,13 @@ emerge --sync / emerge
 emerge <package>
 ```
 
+## ClearLinux
+```bash
+# swupd
+swupd update
+swupd bundle-add <package>
+```
+
 ## MacOS
 ```bash
 # brew
