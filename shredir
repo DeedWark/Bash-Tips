@@ -1,0 +1,27 @@
+#!/bin/env bash
+
+#SHRED AN ENTIRE DIRECTORY
+
+if [ $UID -ne 0 ] ; then
+        echo "You must launch with sudo!"
+        exit 1
+fi
+
+list=$(ls -d */ |cut -d "/" -f1)
+
+echo -e "WARNING!!! This script will destroy all your directory without any option to recover it.\nPLEASE BE CAREFULL!!!\n"
+
+echo -e "Directory available:\n$list\n"
+
+read -r -p 'Directory name: ' dir
+
+echo -e "Directory selected: $dir\n"
+
+read -r -p 'Are you 100% SURE? [Y/N]: ' sure
+
+case $sure in
+        [YyOo]* ) find "${dir}" -type f -exec shred -fuzv -n48 {} \; && rm -rf ${dir};;
+        [Nn]* ) exit 0;;
+esac
+
+echo -e "\nDirectory $dir is now totally destroyed!"
